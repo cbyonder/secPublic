@@ -1,16 +1,15 @@
 # secPublic
-testing environment:    
+1.testing environment:    
   Windows 10 20H2
   
+2.get the pdfnet.dll  
 downlaod PDFTron's C++ PDF library  for Windows(32-bit) f:  
 https://www.pdftron.com/documentation/windows/get-started/cpp/    
-then you can get the pdfnet.dll
 
+3. prepare  
 Put fuzzpdftron.exe, pdfnet.dll and input files in the same directory
 
-
-
-results:  
+4.run&&results  
 1.Out-Of-Bounds (OOB)  
   	fuzzPDFTron.exe id_000014_00_EXCEPTION_ACCESS_VIOLATION   
   	crash: "OOBR[0x34]+4 b38.738 @ fuzzpdftron.exe!pdfnetc.dll+0xA60894.html"   
