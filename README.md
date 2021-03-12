@@ -14,5 +14,5 @@ results:
   	crash: "OOBR[0x34]+4 b38.738 @ fuzzpdftron.exe!pdfnetc.dll+0xA60894.html"   
 	
 2.write reserved but unallocated memory(AVW)        
-	  	  fuzzPDFTron.exe id_000048_00_EXCEPTION_ACCESS_VIOLATION
+	  	  fuzzPDFTron.exe id_000048_00_EXCEPTION_ACCESS_VIOLATION  
 	  	crash: "AVW.Reserved[0xC1000]@0xD6C 40e.722 @ fuzzpdftron.exe!pdfnetc.dll+0xA5F1F7.html"
