@@ -3,7 +3,7 @@
   Windows 10 20H2
   
 2.get the pdfnet.dll  
-downlaod PDFTron's C++ PDF library  for Windows(32-bit) f:  
+downlaod PDFTron's C++ PDF library  for Windows(32-bit) from:  
 https://www.pdftron.com/documentation/windows/get-started/cpp/    
 
 3.prepare  
