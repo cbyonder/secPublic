@@ -1,0 +1,614 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
+    <meta http-equiv="Content-Security-Policy" content="disown-opener; referrer no-referrer;"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@berendjanwever"/>
+    <meta name="twitter:title" content="AVW:Reserved[0xC1000]@0xD6C 40e.722 @ fuzzpdftron.exe!pdfnetc.dll+0xA5F1F7"/>
+    <meta name="twitter:description" content="An Access Violation exception happened at 0x11EFFD6C while write reserved but unallocated memory at 0x11EFF000-0x11FC0000."/>
+    <title>AVW:Reserved[0xC1000]@0xD6C 40e.722 @ fuzzpdftron.exe!pdfnetc.dll+0xA5F1F7</title>
+    <style>
+      * {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        border-spacing: 0;
+        border-collapse: collapse;
+        color: inherit;
+        background: transparent;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        font-size: inherit;
+      }
+      html {
+        overflow-y: scroll; /* prevent center jumping */
+        color: rgba(22, 19, 16, 1);
+        background: #E5E2DE;
+        font-weight: 400;
+        padding: 1em;
+        font-family: Monospace;
+      }
+      body {
+        margin: auto;
+        max-width: 80em;
+      }
+      h1, h2, h3, h4, h5 {
+        font-weight: 700;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+        margin-bottom: -1px;
+      }
+      :link {
+        border-bottom: 1px dotted rgba(0,0, 238, 0.25);
+      }
+      :link:hover, :link:active {
+        border-bottom: 1px solid rgba(0,0, 238, 1);
+      }
+      :visited {
+        border-bottom: 1px dotted rgba(85, 26, 139, 0.25);
+      }
+      :visited:hover, :visited:active {
+        border-bottom: 1px solid rgba(85, 26, 139, 1);
+      }
+      table {
+        border-spacing: 0;
+        border-collapse: collapse;
+      }
+      ul, ol {
+        padding-left: 2em;
+      }
+      h1 {
+        padding: 0.5em 1em 0.5em 1em;
+        color: rgba(255, 251, 247, 1);
+        background-color: rgba(22, 19, 16, 1);
+        font-size: 120%;
+        margin-bottom: 0.5em;
+      }
+      h2 {
+        font-size: 120%;
+      }
+      td:first-child {
+        white-space: pre;
+      }
+      td {
+        vertical-align: top;
+      }
+      sup, sub {
+        font-size: 50%;
+      }
+      hr {
+        border: dotted black;
+        border-width: 0 0 1pt 0;
+      }
+      .HexNumberHeader {
+        opacity: 0.25;
+      }
+      .Block {
+        padding: 1em;
+        border: 1px solid rgba(22, 19, 16, 0.2);
+        border-radius: 0.5em;
+        background-color: rgba(255, 251, 247, 1);
+        box-shadow: 0 1em   2em rgba(22, 19, 16, 0.2),
+                    0 1em   1em rgba(22, 19, 16, 0.05),
+                    0 1em 0.5em rgba(22, 19, 16, 0.05);
+        margin-bottom: 1em;
+        display: block;
+      }
+      .Content {
+        overflow-x: auto;
+      }
+      .Collapsible > .Content,
+      .Collapsed > .CollapsedPlaceholder {
+        display: block;
+      }
+      .Collapsible > .CollapsedPlaceholder,
+      .Collapsed > .Content {
+        display: none;
+      }
+      .BlockHeaderIcon {
+        float: right;
+        vertical-align: top;
+        border: 1px solid rgba(255, 251, 247, 1);
+      }
+      .Collapsible .BlockHeaderIcon {
+        padding: 1px 0.8em 0 0;
+      }
+      .Collapsed .BlockHeaderIcon {
+        padding: 0.8em 0.8em 0 0;
+      }
+      .Footer {
+        padding: 1em;
+        text-align: center;
+      }
+      .Important {
+        background-color: rgba(255,255,0,0.3);
+      }
+      .SecurityImpact {
+        background-color: rgba(255,0,0,0.2);
+      }
+      .CDBPrompt {
+        white-space: pre;
+      }
+      .CDBCommand {
+        font-weight: bold;
+        white-space: pre;
+      }
+      .CDBComment {
+        font-weight: bold;
+        white-space: pre;
+        background-color: rgba(255,255,0,0.1);
+      }
+      .CDBCommandResult {
+        font-weight: bold;
+        white-space: pre;
+      }
+      .CDBStdOut {
+        color: grey;
+        white-space: pre;
+      }
+      .CDBOrApplicationStdOut {
+        font-weight: bold;
+        color: navy;
+        background-color: rgba(255,255,0,0.3);
+        white-space: pre;
+      }
+      .CDBStdErr {
+        color: maroon;
+        white-space: pre;
+      }
+      .CDBIgnoredException {
+        color: grey;
+        white-space: pre;
+      }
+      .BinaryInformation, .Memory, .Registers, .Stack {
+        white-space: pre;
+      }
+      table.Registers {
+        border-spacing: 1ex 0;
+        border-collapse: separate;
+      }
+      table.Registers td + td {
+        padding-left: 1ex;
+        border-left: 1px solid rgba(0,0,0, 0.25);
+      }
+      .DisassemblyInformation {
+      }
+      .DisassemblyAddress {
+        color: grey;
+      }
+      .DisassemblyOpcode {
+        color: grey;
+      }
+      .DisassemblyInstruction {
+      }
+      .MemoryAddress {
+        color: grey;
+        padding-right: 0.5em;
+      }
+      .MemoryInaccessible {
+        color: grey;
+        text-align: center;
+      }
+      .MemoryBytes {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+      .MemoryChars {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+      .MemoryPointer {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+      .MemoryPointerSymbol {
+        padding-left: 0.5em;
+      }
+      .MemoryRemarks {
+        background-color: rgba(255,255,0,0.3);
+      }
+      .StackFrame {
+      }
+      .StackFrameInline {
+        color: silver;
+      }
+      .StackFrameHidden {
+        color: silver;
+      }
+      .StackFramePartOfId {
+        background-color: rgba(255,255,0,0.3);
+        font-weight: bold;
+      }
+      .StackFrameWithoutSymbol {
+        font-style: italic;
+      }
+      .StackFrameNotes {
+      }
+      .StackFrameSource {
+        color: grey;
+      }
+      .LogProcess {
+      }
+      .LogException {
+      }
+      .LogBreakpoint {
+      }
+      .LogEmbeddedCommandsBreakpoint {
+      }
+      .LogStdErrOutput {
+        color: maroon;
+      }
+      .LogImportantStdErrOutput {
+      }
+      .LogStdOutOutput {
+        font-weight: bold;
+      }
+      .LogImportantStdOutOutput {
+      }
+      .LogMessage {
+      }
+    </style>
+    <script>
+      function fAddClickHandler(oBlockHeaderElement) {
+        var oBlockElement = oBlockHeaderElement.parentElement,
+            bCollapsedPlaceholdersRemoved = false;
+        oBlockHeaderElement.onclick = function () {
+          oBlockElement.className = oBlockElement.className.replace(
+            /\b(Collapsed|Collapsible)\b/,
+            function (sCurrentClassName) {
+              return {"Collapsible": "Collapsed", "Collapsed": "Collapsible"}[sCurrentClassName];
+            }
+          );
+          if (!bCollapsedPlaceholdersRemoved) {
+            // A copy of this list is needed as it is dynamic and we plan to remove elements.
+            var aoCollapsedPlaceholderElements = Array.prototype.slice.call(document.getElementsByClassName("CollapsedPlaceholder"));
+            for (var u = 0; u < aoCollapsedPlaceholderElements.length; u++) {
+              var oCollapsedPlaceholderElement = aoCollapsedPlaceholderElements[u];
+              oCollapsedPlaceholderElement.parentNode.removeChild(oCollapsedPlaceholderElement);
+            };
+          };
+        };
+      };
+      onload = function() {
+        var aoBlockHeaderElements = document.getElementsByClassName("BlockHeader");
+        for (var u = 0; u < aoBlockHeaderElements.length; u++) {
+          fAddClickHandler(aoBlockHeaderElements[u]);
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <div class="Block Collapsible">
+      <h1 class="BlockHeader">BugId AVW:Reserved[0xC1000]@0xD6C 40e.722 @ fuzzpdftron.exe!pdfnetc.dll+0xA5F1F7 summary<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <table>
+          <tr><td>BugId:           </td><td><span class="Important"><b>AVW:Reserved[0xC1000]@0xD6C 40e.722</b></span></td></tr>
+
+          <tr><td>Location:        </td><td><span class="Important">fuzzpdftron.exe!pdfnetc.dll+0xA5F1F7</span></td></tr>
+
+          <tr><td>Description:     </td><td><span class="Important">An Access Violation exception happened at 0x11EFFD6C while write reserved but unallocated memory at 0x11EFF000-0x11FC0000.</span></td></tr>
+          <tr><td>Version:         </td><td><b>fuzzPDFTron.exe</b>: Wed Mar  3 14:13:11 2021 (603F28F7) (x86)<br/>
+<b>PDFNetC.dll</b>: 8.1.3.522 (x86)</td></tr>
+          <tr><td>Security impact: </td><td><span class="SecurityImpact">Potentially exploitable security issue, if the address can be controlled, or memory be allocated at the address rather than reserved.</span></td></tr>
+
+
+<tr><td>Arguments: </td><td>['C:\\winafl\\winafl\\build32\\bin\\Release\\fuzzPDFTronMin\\Release\\out-20210304\\slaver00\\crashes\\id_000048_00_EXCEPTION_ACCESS_VIOLATION']</td></tr>
+        </table>
+        <br/>
+        <a href="https://github.com/SkyLined/BugId">BugId</a> version 2020-06-17 22:47 by SkyLined.
+         You may not use this version of BugId for commercial purposes. Please contact the author if you wish to use BugId commercially. Contact and licensing information can be found at the bottom of this report.
+      </div>
+    </div>
+    <div class="Block Collapsible">
+      <h1 class="BlockHeader">Stack<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <span class="Stack"><ol><li><span class="StackFrame StackFramePartOfId StackFrameWithoutSymbol">PDFNetC.dll + 0xA5F1F7</span> <span class="StackFrameNotes">(id: 40e, no function symbol available)</span></li><li><span class="StackFrame StackFramePartOfId StackFrameWithoutSymbol">PDFNetC.dll + 0x6C1420</span> <span class="StackFrameNotes">(id: 722, no function symbol available)</span></li><li><span class="StackFrame StackFrameWithoutSymbol">PDFNetC.dll + 0xE1FBAA</span> <span class="StackFrameNotes">(no function symbol available)</span></li><li><span class="StackFrame StackFrameWithoutSymbol">PDFNetC.dll + 0x99D8F</span> <span class="StackFrameNotes">(no function symbol available)</span></li><li><span class="StackFrame StackFrameWithoutSymbol">PDFNetC.dll + 0xA557AD</span> <span class="StackFrameNotes">(no function symbol available)</span></li><li><span class="StackFrame StackFrameWithoutSymbol">PDFNetC.dll + 0x29552E</span> <span class="StackFrameNotes">(no function symbol available)</span></li></ol></span>
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Block Collapsed">
+      <h1 class="BlockHeader">Registers<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <table class="Registers"><tr><td>eax   =        <span class="HexNumberHeader">0x</span>0</td><td>xmm0  = <span class="HexNumberHeader">0x</span>40580000000000004058000000000000</td></tr>
+<tr><td>ebx   =        <span class="HexNumberHeader">0x</span>0</td><td>xmm1  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>ecx   =        <span class="HexNumberHeader">0x</span>0</td><td>xmm2  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>edx   = <span class="HexNumberHeader">0x</span>11EB8C00</td><td>xmm3  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>esi   =  <span class="HexNumberHeader">0x</span>83FBAB8</td><td>xmm4  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>edi   = <span class="HexNumberHeader">0x</span>11EFFD6C</td><td>xmm5  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>esp   =   <span class="HexNumberHeader">0x</span>BFF3BC</td><td>xmm6  =                 <span class="HexNumberHeader">0x</span>3FF0000000000000</td></tr>
+<tr><td>ebp   =   <span class="HexNumberHeader">0x</span>BFF438</td><td>xmm7  =                 <span class="HexNumberHeader">0x</span>3FF0000000000000</td></tr></table>
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Block Collapsed">
+      <h1 class="BlockHeader">Disassembly of stack frame 1 at PDFNetC.dll + 0xA5F1F7<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <span class="Disassembly"><table><tr><td class="DisassemblyAddress">06aef112 </td><td class="DisassemblyOpcode">a3c4da3f08      </td><td class="DisassemblyInstruction">mov     dword ptr [PDFNetC!TRN_GetFullMessage+0x15f2fa4 (083fdac4)],eax</td></tr>
+<tr><td class="DisassemblyAddress">06aef117 </td><td class="DisassemblyOpcode">8d4202          </td><td class="DisassemblyInstruction">lea     eax,[edx+2]</td></tr>
+<tr><td class="DisassemblyAddress">06aef11a </td><td class="DisassemblyOpcode">8915c8da3f08    </td><td class="DisassemblyInstruction">mov     dword ptr [PDFNetC!TRN_GetFullMessage+0x15f2fa8 (083fdac8)],edx</td></tr>
+<tr><td class="DisassemblyAddress">06aef120 </td><td class="DisassemblyOpcode">a3c0da3f08      </td><td class="DisassemblyInstruction">mov     dword ptr [PDFNetC!TRN_GetFullMessage+0x15f2fa0 (083fdac0)],eax</td></tr>
+<tr><td class="DisassemblyAddress">06aef125 </td><td class="DisassemblyOpcode">c705d4da3f0800000000 </td><td class="DisassemblyInstruction">mov dword ptr [PDFNetC!TRN_GetFullMessage+0x15f2fb4 (083fdad4)],0</td></tr>
+<tr><td class="DisassemblyAddress">06aef12f </td><td class="DisassemblyOpcode">c705d0da3f0800000000 </td><td class="DisassemblyInstruction">mov dword ptr [PDFNetC!TRN_GetFullMessage+0x15f2fb0 (083fdad0)],0</td></tr>
+<tr><td class="DisassemblyAddress">06aef139 </td><td class="DisassemblyOpcode">c705d8da3f0802000000 </td><td class="DisassemblyInstruction">mov dword ptr [PDFNetC!TRN_GetFullMessage+0x15f2fb8 (083fdad8)],2</td></tr>
+<tr><td class="DisassemblyAddress">06aef143 </td><td class="DisassemblyOpcode">c605aa3a3f0800  </td><td class="DisassemblyInstruction">mov     byte ptr [PDFNetC!TRN_GetFullMessage+0x15e8f8a (083f3aaa)],0</td></tr>
+<tr><td class="DisassemblyAddress">06aef14a </td><td class="DisassemblyOpcode">c705b03a3f08ac3a3f08 </td><td class="DisassemblyInstruction">mov dword ptr [PDFNetC!TRN_GetFullMessage+0x15e8f90 (083f3ab0)],offset PDFNetC!TRN_GetFullMessage+0x15e8f8c (083f3aac)</td></tr>
+<tr><td class="DisassemblyAddress">06aef154 </td><td class="DisassemblyOpcode">e837020000      </td><td class="DisassemblyInstruction">call    PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f3a10 (06aef390)</td></tr>
+<tr><td class="DisassemblyAddress">06aef159 </td><td class="DisassemblyOpcode">8b4c2420        </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [esp+20h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef15d </td><td class="DisassemblyOpcode">33c0            </td><td class="DisassemblyInstruction">xor     eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">06aef15f </td><td class="DisassemblyOpcode">83c404          </td><td class="DisassemblyInstruction">add     esp,4</td></tr>
+<tr><td class="DisassemblyAddress">06aef162 </td><td class="DisassemblyOpcode">89442444        </td><td class="DisassemblyInstruction">mov     dword ptr [esp+44h],eax</td></tr>
+<tr><td class="DisassemblyAddress">06aef166 </td><td class="DisassemblyOpcode">85c9            </td><td class="DisassemblyInstruction">test    ecx,ecx</td></tr>
+<tr><td class="DisassemblyAddress">06aef168 </td><td class="DisassemblyOpcode">0f842efdffff    </td><td class="DisassemblyInstruction">je      PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f351c (06aeee9c)</td></tr>
+<tr><td class="DisassemblyAddress">06aef16e </td><td class="DisassemblyOpcode">8b35b43a3f08    </td><td class="DisassemblyInstruction">mov     esi,dword ptr [PDFNetC!TRN_GetFullMessage+0x15e8f94 (083f3ab4)]</td></tr>
+<tr><td class="DisassemblyAddress">06aef174 </td><td class="DisassemblyOpcode">837c243400      </td><td class="DisassemblyInstruction">cmp     dword ptr [esp+34h],0</td></tr>
+<tr><td class="DisassemblyAddress">06aef179 </td><td class="DisassemblyOpcode">7412            </td><td class="DisassemblyInstruction">je      PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f380d (06aef18d)</td></tr>
+<tr><td class="DisassemblyAddress">06aef17b </td><td class="DisassemblyOpcode">50              </td><td class="DisassemblyInstruction">push    eax</td></tr>
+<tr><td class="DisassemblyAddress">06aef17c </td><td class="DisassemblyOpcode">51              </td><td class="DisassemblyInstruction">push    ecx</td></tr>
+<tr><td class="DisassemblyAddress">06aef17d </td><td class="DisassemblyOpcode">e89e0a0000      </td><td class="DisassemblyInstruction">call    PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f42a0 (06aefc20)</td></tr>
+<tr><td class="DisassemblyAddress">06aef182 </td><td class="DisassemblyOpcode">8bc8            </td><td class="DisassemblyInstruction">mov     ecx,eax</td></tr>
+<tr><td class="DisassemblyAddress">06aef184 </td><td class="DisassemblyOpcode">83c408          </td><td class="DisassemblyInstruction">add     esp,8</td></tr>
+<tr><td class="DisassemblyAddress">06aef187 </td><td class="DisassemblyOpcode">034c2424        </td><td class="DisassemblyInstruction">add     ecx,dword ptr [esp+24h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef18b </td><td class="DisassemblyOpcode">eb06            </td><td class="DisassemblyInstruction">jmp     PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f3813 (06aef193)</td></tr>
+<tr><td class="DisassemblyAddress">06aef18d </td><td class="DisassemblyOpcode">8b4c2424        </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [esp+24h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef191 </td><td class="DisassemblyOpcode">03c8            </td><td class="DisassemblyInstruction">add     ecx,eax</td></tr>
+<tr><td class="DisassemblyAddress">06aef193 </td><td class="DisassemblyOpcode">8b4520          </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ebp+20h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef196 </td><td class="DisassemblyOpcode">0fafc1          </td><td class="DisassemblyInstruction">imul    eax,ecx</td></tr>
+<tr><td class="DisassemblyAddress">06aef199 </td><td class="DisassemblyOpcode">8b4c2430        </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [esp+30h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef19d </td><td class="DisassemblyOpcode">03442428        </td><td class="DisassemblyInstruction">add     eax,dword ptr [esp+28h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef1a1 </td><td class="DisassemblyOpcode">8d3c81          </td><td class="DisassemblyInstruction">lea     edi,[ecx+eax*4]</td></tr>
+<tr><td class="DisassemblyAddress">06aef1a4 </td><td class="DisassemblyOpcode">8b442420        </td><td class="DisassemblyInstruction">mov     eax,dword ptr [esp+20h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef1a8 </td><td class="DisassemblyOpcode">8bd8            </td><td class="DisassemblyInstruction">mov     ebx,eax</td></tr>
+<tr><td class="DisassemblyAddress">06aef1aa </td><td class="DisassemblyOpcode">85c0            </td><td class="DisassemblyInstruction">test    eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">06aef1ac </td><td class="DisassemblyOpcode">7475            </td><td class="DisassemblyInstruction">je      PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f38a3 (06aef223)</td></tr>
+<tr><td class="DisassemblyAddress">06aef1ae </td><td class="DisassemblyOpcode">8bff            </td><td class="DisassemblyInstruction">mov     edi,edi</td></tr>
+<tr><td class="DisassemblyAddress">06aef1b0 </td><td class="DisassemblyOpcode">8bc6            </td><td class="DisassemblyInstruction">mov     eax,esi</td></tr>
+<tr><td class="DisassemblyAddress">06aef1b2 </td><td class="DisassemblyOpcode">2db8ba3f08      </td><td class="DisassemblyInstruction">sub     eax,offset PDFNetC!TRN_GetFullMessage+0x15f0f98 (083fbab8)</td></tr>
+<tr><td class="DisassemblyAddress">06aef1b7 </td><td class="DisassemblyOpcode">7453            </td><td class="DisassemblyInstruction">je      PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f388c (06aef20c)</td></tr>
+<tr><td class="DisassemblyAddress">06aef1b9 </td><td class="DisassemblyOpcode">3bc3            </td><td class="DisassemblyInstruction">cmp     eax,ebx</td></tr>
+<tr><td class="DisassemblyAddress">06aef1bb </td><td class="DisassemblyOpcode">0f47c3          </td><td class="DisassemblyInstruction">cmova   eax,ebx</td></tr>
+<tr><td class="DisassemblyAddress">06aef1be </td><td class="DisassemblyOpcode">2bd8            </td><td class="DisassemblyInstruction">sub     ebx,eax</td></tr>
+<tr><td class="DisassemblyAddress">06aef1c0 </td><td class="DisassemblyOpcode">895c2438        </td><td class="DisassemblyInstruction">mov     dword ptr [esp+38h],ebx</td></tr>
+<tr><td class="DisassemblyAddress">06aef1c4 </td><td class="DisassemblyOpcode">85c0            </td><td class="DisassemblyInstruction">test    eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">06aef1c6 </td><td class="DisassemblyOpcode">7457            </td><td class="DisassemblyInstruction">je      PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f389f (06aef21f)</td></tr>
+<tr><td class="DisassemblyAddress">06aef1c8 </td><td class="DisassemblyOpcode">8b4d30          </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [ebp+30h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef1cb </td><td class="DisassemblyOpcode">4e              </td><td class="DisassemblyInstruction">dec     esi</td></tr>
+<tr><td class="DisassemblyAddress">06aef1cc </td><td class="DisassemblyOpcode">8b5c2410        </td><td class="DisassemblyInstruction">mov     ebx,dword ptr [esp+10h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef1d0 </td><td class="DisassemblyOpcode">48              </td><td class="DisassemblyInstruction">dec     eax</td></tr>
+<tr><td class="DisassemblyAddress">06aef1d1 </td><td class="DisassemblyOpcode">8a16            </td><td class="DisassemblyInstruction">mov     dl,byte ptr [esi]</td></tr>
+<tr><td class="DisassemblyAddress">06aef1d3 </td><td class="DisassemblyOpcode">8a5c0b10        </td><td class="DisassemblyInstruction">mov     bl,byte ptr [ebx+ecx+10h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef1d7 </td><td class="DisassemblyOpcode">84db            </td><td class="DisassemblyInstruction">test    bl,bl</td></tr>
+<tr><td class="DisassemblyAddress">06aef1d9 </td><td class="DisassemblyOpcode">7412            </td><td class="DisassemblyInstruction">je      PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f386d (06aef1ed)</td></tr>
+<tr><td class="DisassemblyAddress">06aef1db </td><td class="DisassemblyOpcode">8b6c2410        </td><td class="DisassemblyInstruction">mov     ebp,dword ptr [esp+10h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef1df </td><td class="DisassemblyOpcode">3a542911        </td><td class="DisassemblyInstruction">cmp     dl,byte ptr [ecx+ebp+11h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef1e3 </td><td class="DisassemblyOpcode">8b6c2440        </td><td class="DisassemblyInstruction">mov     ebp,dword ptr [esp+40h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef1e7 </td><td class="DisassemblyOpcode">7504            </td><td class="DisassemblyInstruction">jne     PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f386d (06aef1ed)</td></tr>
+<tr><td class="DisassemblyAddress">06aef1e9 </td><td class="DisassemblyOpcode">84db            </td><td class="DisassemblyInstruction">test    bl,bl</td></tr>
+<tr><td class="DisassemblyAddress">06aef1eb </td><td class="DisassemblyOpcode">750c            </td><td class="DisassemblyInstruction">jne     PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f3879 (06aef1f9)</td></tr>
+<tr><td class="DisassemblyAddress">06aef1ed </td><td class="DisassemblyOpcode">0fb6ca          </td><td class="DisassemblyInstruction">movzx   ecx,dl</td></tr>
+<tr><td class="DisassemblyAddress">06aef1f0 </td><td class="DisassemblyOpcode">8b54242c        </td><td class="DisassemblyInstruction">mov     edx,dword ptr [esp+2Ch]</td></tr>
+<tr><td class="DisassemblyAddress">06aef1f4 </td><td class="DisassemblyOpcode">8b0c8a          </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [edx+ecx*4]</td></tr>
+<tr><td class="DisassemblyAddress Important">06aef1f7 </td><td class="DisassemblyOpcode Important">890f            </td><td class="DisassemblyInstruction Important">mov     dword ptr [edi],ecx // current instruction</td></tr>
+<tr><td class="DisassemblyAddress">06aef1f9 </td><td class="DisassemblyOpcode">83c704          </td><td class="DisassemblyInstruction">add     edi,4</td></tr>
+<tr><td class="DisassemblyAddress">06aef1fc </td><td class="DisassemblyOpcode">85c0            </td><td class="DisassemblyInstruction">test    eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">06aef1fe </td><td class="DisassemblyOpcode">75c8            </td><td class="DisassemblyInstruction">jne     PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f3848 (06aef1c8)</td></tr>
+<tr><td class="DisassemblyAddress">06aef200 </td><td class="DisassemblyOpcode">8b5c2438        </td><td class="DisassemblyInstruction">mov     ebx,dword ptr [esp+38h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef204 </td><td class="DisassemblyOpcode">8935b43a3f08    </td><td class="DisassemblyInstruction">mov     dword ptr [PDFNetC!TRN_GetFullMessage+0x15e8f94 (083f3ab4)],esi</td></tr>
+<tr><td class="DisassemblyAddress">06aef20a </td><td class="DisassemblyOpcode">eb13            </td><td class="DisassemblyInstruction">jmp     PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f389f (06aef21f)</td></tr>
+<tr><td class="DisassemblyAddress">06aef20c </td><td class="DisassemblyOpcode">55              </td><td class="DisassemblyInstruction">push    ebp</td></tr>
+<tr><td class="DisassemblyAddress">06aef20d </td><td class="DisassemblyOpcode">e87e0a0000      </td><td class="DisassemblyInstruction">call    PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f4310 (06aefc90)</td></tr>
+<tr><td class="DisassemblyAddress">06aef212 </td><td class="DisassemblyOpcode">83c404          </td><td class="DisassemblyInstruction">add     esp,4</td></tr>
+<tr><td class="DisassemblyAddress">06aef215 </td><td class="DisassemblyOpcode">84c0            </td><td class="DisassemblyInstruction">test    al,al</td></tr>
+<tr><td class="DisassemblyAddress">06aef217 </td><td class="DisassemblyOpcode">7421            </td><td class="DisassemblyInstruction">je      PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f38ba (06aef23a)</td></tr>
+<tr><td class="DisassemblyAddress">06aef219 </td><td class="DisassemblyOpcode">8b35b43a3f08    </td><td class="DisassemblyInstruction">mov     esi,dword ptr [PDFNetC!TRN_GetFullMessage+0x15e8f94 (083f3ab4)]</td></tr>
+<tr><td class="DisassemblyAddress">06aef21f </td><td class="DisassemblyOpcode">85db            </td><td class="DisassemblyInstruction">test    ebx,ebx</td></tr>
+<tr><td class="DisassemblyAddress">06aef221 </td><td class="DisassemblyOpcode">758d            </td><td class="DisassemblyInstruction">jne     PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f3830 (06aef1b0)</td></tr>
+<tr><td class="DisassemblyAddress">06aef223 </td><td class="DisassemblyOpcode">8b442444        </td><td class="DisassemblyInstruction">mov     eax,dword ptr [esp+44h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef227 </td><td class="DisassemblyOpcode">8b4c241c        </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [esp+1Ch]</td></tr>
+<tr><td class="DisassemblyAddress">06aef22b </td><td class="DisassemblyOpcode">40              </td><td class="DisassemblyInstruction">inc     eax</td></tr>
+<tr><td class="DisassemblyAddress">06aef22c </td><td class="DisassemblyOpcode">89442444        </td><td class="DisassemblyInstruction">mov     dword ptr [esp+44h],eax</td></tr>
+<tr><td class="DisassemblyAddress">06aef230 </td><td class="DisassemblyOpcode">3bc1            </td><td class="DisassemblyInstruction">cmp     eax,ecx</td></tr>
+<tr><td class="DisassemblyAddress">06aef232 </td><td class="DisassemblyOpcode">0f823cffffff    </td><td class="DisassemblyInstruction">jb      PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f37f4 (06aef174)</td></tr>
+<tr><td class="DisassemblyAddress">06aef238 </td><td class="DisassemblyOpcode">eb0f            </td><td class="DisassemblyInstruction">jmp     PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f38c9 (06aef249)</td></tr>
+<tr><td class="DisassemblyAddress">06aef23a </td><td class="DisassemblyOpcode">8b4d40          </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [ebp+40h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef23d </td><td class="DisassemblyOpcode">33c0            </td><td class="DisassemblyInstruction">xor     eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">06aef23f </td><td class="DisassemblyOpcode">83f9f9          </td><td class="DisassemblyInstruction">cmp     ecx,0FFFFFFF9h</td></tr>
+<tr><td class="DisassemblyAddress">06aef242 </td><td class="DisassemblyOpcode">0f44c8          </td><td class="DisassemblyInstruction">cmove   ecx,eax</td></tr>
+<tr><td class="DisassemblyAddress">06aef245 </td><td class="DisassemblyOpcode">894c2418        </td><td class="DisassemblyInstruction">mov     dword ptr [esp+18h],ecx</td></tr>
+<tr><td class="DisassemblyAddress">06aef249 </td><td class="DisassemblyOpcode">8b5c2410        </td><td class="DisassemblyInstruction">mov     ebx,dword ptr [esp+10h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef24d </td><td class="DisassemblyOpcode">8b7c2418        </td><td class="DisassemblyInstruction">mov     edi,dword ptr [esp+18h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef251 </td><td class="DisassemblyOpcode">8b742414        </td><td class="DisassemblyInstruction">mov     esi,dword ptr [esp+14h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef255 </td><td class="DisassemblyOpcode">8b4530          </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ebp+30h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef258 </td><td class="DisassemblyOpcode">807c180c00      </td><td class="DisassemblyInstruction">cmp     byte ptr [eax+ebx+0Ch],0</td></tr>
+<tr><td class="DisassemblyAddress">06aef25d </td><td class="DisassemblyOpcode">0f84a2000000    </td><td class="DisassemblyInstruction">je      PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f3985 (06aef305)</td></tr>
+<tr><td class="DisassemblyAddress">06aef263 </td><td class="DisassemblyOpcode">8b4d10          </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [ebp+10h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef266 </td><td class="DisassemblyOpcode">85c9            </td><td class="DisassemblyInstruction">test    ecx,ecx</td></tr>
+<tr><td class="DisassemblyAddress">06aef268 </td><td class="DisassemblyOpcode">0f8484000000    </td><td class="DisassemblyInstruction">je      PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f3972 (06aef2f2)</td></tr>
+<tr><td class="DisassemblyAddress">06aef26e </td><td class="DisassemblyOpcode">ff7538          </td><td class="DisassemblyInstruction">push    dword ptr [ebp+38h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef271 </td><td class="DisassemblyOpcode">ffd1            </td><td class="DisassemblyInstruction">call    ecx</td></tr>
+<tr><td class="DisassemblyAddress">06aef273 </td><td class="DisassemblyOpcode">8b4d30          </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [ebp+30h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef276 </td><td class="DisassemblyOpcode">83c404          </td><td class="DisassemblyInstruction">add     esp,4</td></tr>
+<tr><td class="DisassemblyAddress">06aef279 </td><td class="DisassemblyOpcode">8b542410        </td><td class="DisassemblyInstruction">mov     edx,dword ptr [esp+10h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef27d </td><td class="DisassemblyOpcode">88440a0d        </td><td class="DisassemblyInstruction">mov     byte ptr [edx+ecx+0Dh],al</td></tr>
+<tr><td class="DisassemblyAddress">06aef281 </td><td class="DisassemblyOpcode">eb74            </td><td class="DisassemblyInstruction">jmp     PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f3977 (06aef2f7)</td></tr>
+<tr><td class="DisassemblyAddress">06aef283 </td><td class="DisassemblyOpcode">8b4530          </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ebp+30h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef286 </td><td class="DisassemblyOpcode">8b5c2410        </td><td class="DisassemblyInstruction">mov     ebx,dword ptr [esp+10h]</td></tr>
+<tr><td class="DisassemblyAddress">06aef28a </td><td class="DisassemblyOpcode">807c030f02      </td><td class="DisassemblyInstruction">cmp     byte ptr [ebx+eax+0Fh],2</td></tr>
+<tr><td class="DisassemblyAddress">06aef28f </td><td class="DisassemblyOpcode">75bc            </td><td class="DisassemblyInstruction">jne     PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f38cd (06aef24d)</td></tr>
+<tr><td class="DisassemblyAddress">06aef291 </td><td class="DisassemblyOpcode">33f6            </td><td class="DisassemblyInstruction">xor     esi,esi</td></tr>
+<tr><td class="DisassemblyAddress">06aef293 </td><td class="DisassemblyOpcode">3974241c        </td><td class="DisassemblyInstruction">cmp     dword ptr [esp+1Ch],esi</td></tr>
+<tr><td class="DisassemblyAddress">06aef297 </td><td class="DisassemblyOpcode">76b4            </td><td class="DisassemblyInstruction">jbe     PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x7f38cd (06aef24d)</td></tr></table></span>
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Block Collapsed">
+      <h1 class="BlockHeader">Disassembly of stack frame 2 at PDFNetC.dll + 0x6C1420<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <span class="Disassembly"><table><tr><td class="DisassemblyAddress">06751344 </td><td class="DisassemblyOpcode">f00fba291e      </td><td class="DisassemblyInstruction">lock bts dword ptr [ecx],1Eh</td></tr>
+<tr><td class="DisassemblyAddress">06751349 </td><td class="DisassemblyOpcode">720c            </td><td class="DisassemblyInstruction">jb      PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x4559d7 (06751357)</td></tr>
+<tr><td class="DisassemblyAddress">0675134b </td><td class="DisassemblyOpcode">e8f04198ff      </td><td class="DisassemblyInstruction">call    PDFNetC!TRN_ByteRangeGetStartOffset+0x5980 (060d5540)</td></tr>
+<tr><td class="DisassemblyAddress">06751350 </td><td class="DisassemblyOpcode">50              </td><td class="DisassemblyInstruction">push    eax</td></tr>
+<tr><td class="DisassemblyAddress">06751351 </td><td class="DisassemblyOpcode">ff15d0f47f07    </td><td class="DisassemblyInstruction">call    dword ptr [PDFNetC!TRN_GetFullMessage+0x9f49b0 (077ff4d0)]</td></tr>
+<tr><td class="DisassemblyAddress">06751357 </td><td class="DisassemblyOpcode">8b842448010000  </td><td class="DisassemblyInstruction">mov     eax,dword ptr [esp+148h]</td></tr>
+<tr><td class="DisassemblyAddress">0675135e </td><td class="DisassemblyOpcode">c784245401000000000000 </td><td class="DisassemblyInstruction">mov dword ptr [esp+154h],0</td></tr>
+<tr><td class="DisassemblyAddress">06751369 </td><td class="DisassemblyOpcode">85c0            </td><td class="DisassemblyInstruction">test    eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">0675136b </td><td class="DisassemblyOpcode">7410            </td><td class="DisassemblyInstruction">je      PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x4559fd (0675137d)</td></tr>
+<tr><td class="DisassemblyAddress">0675136d </td><td class="DisassemblyOpcode">2b842450010000  </td><td class="DisassemblyInstruction">sub     eax,dword ptr [esp+150h]</td></tr>
+<tr><td class="DisassemblyAddress">06751374 </td><td class="DisassemblyOpcode">50              </td><td class="DisassemblyInstruction">push    eax</td></tr>
+<tr><td class="DisassemblyAddress">06751375 </td><td class="DisassemblyOpcode">e81e147500      </td><td class="DisassemblyInstruction">call    PDFNetC!TRN_GetFullMessage+0x97c78 (06ea2798)</td></tr>
+<tr><td class="DisassemblyAddress">0675137a </td><td class="DisassemblyOpcode">83c404          </td><td class="DisassemblyInstruction">add     esp,4</td></tr>
+<tr><td class="DisassemblyAddress">0675137d </td><td class="DisassemblyOpcode">b001            </td><td class="DisassemblyInstruction">mov     al,1</td></tr>
+<tr><td class="DisassemblyAddress">0675137f </td><td class="DisassemblyOpcode">8b8c245c010000  </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [esp+15Ch]</td></tr>
+<tr><td class="DisassemblyAddress">06751386 </td><td class="DisassemblyOpcode">64890d00000000  </td><td class="DisassemblyInstruction">mov     dword ptr fs:[0],ecx</td></tr>
+<tr><td class="DisassemblyAddress">0675138d </td><td class="DisassemblyOpcode">59              </td><td class="DisassemblyInstruction">pop     ecx</td></tr>
+<tr><td class="DisassemblyAddress">0675138e </td><td class="DisassemblyOpcode">5f              </td><td class="DisassemblyInstruction">pop     edi</td></tr>
+<tr><td class="DisassemblyAddress">0675138f </td><td class="DisassemblyOpcode">5e              </td><td class="DisassemblyInstruction">pop     esi</td></tr>
+<tr><td class="DisassemblyAddress">06751390 </td><td class="DisassemblyOpcode">5d              </td><td class="DisassemblyInstruction">pop     ebp</td></tr>
+<tr><td class="DisassemblyAddress">06751391 </td><td class="DisassemblyOpcode">5b              </td><td class="DisassemblyInstruction">pop     ebx</td></tr>
+<tr><td class="DisassemblyAddress">06751392 </td><td class="DisassemblyOpcode">8b8c2444010000  </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [esp+144h]</td></tr>
+<tr><td class="DisassemblyAddress">06751399 </td><td class="DisassemblyOpcode">33cc            </td><td class="DisassemblyInstruction">xor     ecx,esp</td></tr>
+<tr><td class="DisassemblyAddress">0675139b </td><td class="DisassemblyOpcode">e864087500      </td><td class="DisassemblyInstruction">call    PDFNetC!TRN_GetFullMessage+0x970e4 (06ea1c04)</td></tr>
+<tr><td class="DisassemblyAddress">067513a0 </td><td class="DisassemblyOpcode">81c454010000    </td><td class="DisassemblyInstruction">add     esp,154h</td></tr>
+<tr><td class="DisassemblyAddress">067513a6 </td><td class="DisassemblyOpcode">c20400          </td><td class="DisassemblyInstruction">ret     4</td></tr>
+<tr><td class="DisassemblyAddress">067513a9 </td><td class="DisassemblyOpcode">807c241800      </td><td class="DisassemblyInstruction">cmp     byte ptr [esp+18h],0</td></tr>
+<tr><td class="DisassemblyAddress">067513ae </td><td class="DisassemblyOpcode">c684246401000000 </td><td class="DisassemblyInstruction">mov     byte ptr [esp+164h],0</td></tr>
+<tr><td class="DisassemblyAddress">067513b6 </td><td class="DisassemblyOpcode">742e            </td><td class="DisassemblyInstruction">je      PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x455a66 (067513e6)</td></tr>
+<tr><td class="DisassemblyAddress">067513b8 </td><td class="DisassemblyOpcode">8b4c2414        </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [esp+14h]</td></tr>
+<tr><td class="DisassemblyAddress">067513bc </td><td class="DisassemblyOpcode">b800000080      </td><td class="DisassemblyInstruction">mov     eax,80000000h</td></tr>
+<tr><td class="DisassemblyAddress">067513c1 </td><td class="DisassemblyOpcode">f00fc101        </td><td class="DisassemblyInstruction">lock xadd dword ptr [ecx],eax</td></tr>
+<tr><td class="DisassemblyAddress">067513c5 </td><td class="DisassemblyOpcode">a900000040      </td><td class="DisassemblyInstruction">test    eax,40000000h</td></tr>
+<tr><td class="DisassemblyAddress">067513ca </td><td class="DisassemblyOpcode">751a            </td><td class="DisassemblyInstruction">jne     PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x455a66 (067513e6)</td></tr>
+<tr><td class="DisassemblyAddress">067513cc </td><td class="DisassemblyOpcode">3d00000080      </td><td class="DisassemblyInstruction">cmp     eax,80000000h</td></tr>
+<tr><td class="DisassemblyAddress">067513d1 </td><td class="DisassemblyOpcode">7e13            </td><td class="DisassemblyInstruction">jle     PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x455a66 (067513e6)</td></tr>
+<tr><td class="DisassemblyAddress">067513d3 </td><td class="DisassemblyOpcode">f00fba291e      </td><td class="DisassemblyInstruction">lock bts dword ptr [ecx],1Eh</td></tr>
+<tr><td class="DisassemblyAddress">067513d8 </td><td class="DisassemblyOpcode">720c            </td><td class="DisassemblyInstruction">jb      PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x455a66 (067513e6)</td></tr>
+<tr><td class="DisassemblyAddress">067513da </td><td class="DisassemblyOpcode">e8614198ff      </td><td class="DisassemblyInstruction">call    PDFNetC!TRN_ByteRangeGetStartOffset+0x5980 (060d5540)</td></tr>
+<tr><td class="DisassemblyAddress">067513df </td><td class="DisassemblyOpcode">50              </td><td class="DisassemblyInstruction">push    eax</td></tr>
+<tr><td class="DisassemblyAddress">067513e0 </td><td class="DisassemblyOpcode">ff15d0f47f07    </td><td class="DisassemblyInstruction">call    dword ptr [PDFNetC!TRN_GetFullMessage+0x9f49b0 (077ff4d0)]</td></tr>
+<tr><td class="DisassemblyAddress">067513e6 </td><td class="DisassemblyOpcode">8b842448010000  </td><td class="DisassemblyInstruction">mov     eax,dword ptr [esp+148h]</td></tr>
+<tr><td class="DisassemblyAddress">067513ed </td><td class="DisassemblyOpcode">c784245401000000000000 </td><td class="DisassemblyInstruction">mov dword ptr [esp+154h],0</td></tr>
+<tr><td class="DisassemblyAddress">067513f8 </td><td class="DisassemblyOpcode">85c0            </td><td class="DisassemblyInstruction">test    eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">067513fa </td><td class="DisassemblyOpcode">7410            </td><td class="DisassemblyInstruction">je      PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x455a8c (0675140c)</td></tr>
+<tr><td class="DisassemblyAddress">067513fc </td><td class="DisassemblyOpcode">2b842450010000  </td><td class="DisassemblyInstruction">sub     eax,dword ptr [esp+150h]</td></tr>
+<tr><td class="DisassemblyAddress">06751403 </td><td class="DisassemblyOpcode">50              </td><td class="DisassemblyInstruction">push    eax</td></tr>
+<tr><td class="DisassemblyAddress">06751404 </td><td class="DisassemblyOpcode">e88f137500      </td><td class="DisassemblyInstruction">call    PDFNetC!TRN_GetFullMessage+0x97c78 (06ea2798)</td></tr>
+<tr><td class="DisassemblyAddress">06751409 </td><td class="DisassemblyOpcode">83c404          </td><td class="DisassemblyInstruction">add     esp,4</td></tr>
+<tr><td class="DisassemblyAddress">0675140c </td><td class="DisassemblyOpcode">32c0            </td><td class="DisassemblyInstruction">xor     al,al</td></tr>
+<tr><td class="DisassemblyAddress">0675140e </td><td class="DisassemblyOpcode">e96cffffff      </td><td class="DisassemblyInstruction">jmp     PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x4559ff (0675137f)</td></tr>
+<tr><td class="DisassemblyAddress">06751413 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751414 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751415 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751416 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751417 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751418 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751419 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">0675141a </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">0675141b </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">0675141c </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">0675141d </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">0675141e </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">0675141f </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3 <span class="Important">// call</span></td></tr>
+<tr><td class="DisassemblyAddress Important">06751420 </td><td class="DisassemblyOpcode Important">c3              </td><td class="DisassemblyInstruction Important">ret // return address</td></tr>
+<tr><td class="DisassemblyAddress">06751421 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751422 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751423 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751424 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751425 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751426 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751427 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751428 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751429 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">0675142a </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">0675142b </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">0675142c </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">0675142d </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">0675142e </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">0675142f </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751430 </td><td class="DisassemblyOpcode">c7411001000000  </td><td class="DisassemblyInstruction">mov     dword ptr [ecx+10h],1</td></tr>
+<tr><td class="DisassemblyAddress">06751437 </td><td class="DisassemblyOpcode">c70100000000    </td><td class="DisassemblyInstruction">mov     dword ptr [ecx],0</td></tr>
+<tr><td class="DisassemblyAddress">0675143d </td><td class="DisassemblyOpcode">c7410400000000  </td><td class="DisassemblyInstruction">mov     dword ptr [ecx+4],0</td></tr>
+<tr><td class="DisassemblyAddress">06751444 </td><td class="DisassemblyOpcode">c7410800000000  </td><td class="DisassemblyInstruction">mov     dword ptr [ecx+8],0</td></tr>
+<tr><td class="DisassemblyAddress">0675144b </td><td class="DisassemblyOpcode">c7410c00000000  </td><td class="DisassemblyInstruction">mov     dword ptr [ecx+0Ch],0</td></tr>
+<tr><td class="DisassemblyAddress">06751452 </td><td class="DisassemblyOpcode">c3              </td><td class="DisassemblyInstruction">ret</td></tr>
+<tr><td class="DisassemblyAddress">06751453 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751454 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751455 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751456 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751457 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751458 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751459 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">0675145a </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">0675145b </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">0675145c </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">0675145d </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">0675145e </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">0675145f </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">06751460 </td><td class="DisassemblyOpcode">83ec4c          </td><td class="DisassemblyInstruction">sub     esp,4Ch</td></tr>
+<tr><td class="DisassemblyAddress">06751463 </td><td class="DisassemblyOpcode">53              </td><td class="DisassemblyInstruction">push    ebx</td></tr>
+<tr><td class="DisassemblyAddress">06751464 </td><td class="DisassemblyOpcode">55              </td><td class="DisassemblyInstruction">push    ebp</td></tr>
+<tr><td class="DisassemblyAddress">06751465 </td><td class="DisassemblyOpcode">8bd9            </td><td class="DisassemblyInstruction">mov     ebx,ecx</td></tr>
+<tr><td class="DisassemblyAddress">06751467 </td><td class="DisassemblyOpcode">8b4c2458        </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [esp+58h]</td></tr>
+<tr><td class="DisassemblyAddress">0675146b </td><td class="DisassemblyOpcode">56              </td><td class="DisassemblyInstruction">push    esi</td></tr>
+<tr><td class="DisassemblyAddress">0675146c </td><td class="DisassemblyOpcode">57              </td><td class="DisassemblyInstruction">push    edi</td></tr>
+<tr><td class="DisassemblyAddress">0675146d </td><td class="DisassemblyOpcode">8bb348060000    </td><td class="DisassemblyInstruction">mov     esi,dword ptr [ebx+648h]</td></tr>
+<tr><td class="DisassemblyAddress">06751473 </td><td class="DisassemblyOpcode">e8e8141a00      </td><td class="DisassemblyInstruction">call    PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x5f6fe0 (068f2960)</td></tr>
+<tr><td class="DisassemblyAddress">06751478 </td><td class="DisassemblyOpcode">50              </td><td class="DisassemblyInstruction">push    eax</td></tr>
+<tr><td class="DisassemblyAddress">06751479 </td><td class="DisassemblyOpcode">8bce            </td><td class="DisassemblyInstruction">mov     ecx,esi</td></tr>
+<tr><td class="DisassemblyAddress">0675147b </td><td class="DisassemblyOpcode">e850671a00      </td><td class="DisassemblyInstruction">call    PDFNetC!Java_com_pdftron_sdf_UndoManager_Undo+0x5fc250 (068f7bd0)</td></tr>
+<tr><td class="DisassemblyAddress">06751480 </td><td class="DisassemblyOpcode">8b4c2460        </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [esp+60h]</td></tr>
+<tr><td class="DisassemblyAddress">06751484 </td><td class="DisassemblyOpcode">8bf8            </td><td class="DisassemblyInstruction">mov     edi,eax</td></tr>
+<tr><td class="DisassemblyAddress">06751486 </td><td class="DisassemblyOpcode">897c2410        </td><td class="DisassemblyInstruction">mov     dword ptr [esp+10h],edi</td></tr></table></span>
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Block Collapsed">
+      <h1 class="BlockHeader">Binary information<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <span class="BinaryInformation"><h2 class="SubHeader">fuzzPDFTron.exe</h2><table><tr><td>Image path</td><td>fuzzPDFTron.exe</td></tr><tr><td>Image name</td><td>fuzzPDFTron.exe</td></tr><tr><td>Timestamp</td><td>Wed Mar  3 14:13:11 2021 (603F28F7)</td></tr><tr><td>CheckSum</td><td>00000000</td></tr><tr><td>ImageSize</td><td>00008000</td></tr><tr><td>Translations</td><td>0000.04b0 0000.04e4 0409.04b0 0409.04e4</td></tr></table><br/>
+<br/>
+<h2 class="SubHeader">PDFNetC.dll</h2><table><tr><td>Loaded symbol image file</td><td>C:\winafl\winafl\build32\bin\Release\fuzzPDFTronMin\Release\PDFNetC.dll</td></tr><tr><td>Image path</td><td>C:\winafl\winafl\build32\bin\Release\fuzzPDFTronMin\Release\PDFNetC.dll</td></tr><tr><td>Image name</td><td>PDFNetC.dll</td></tr><tr><td>Timestamp</td><td>Wed Dec  2 22:51:37 2020 (5FC7A9F9)</td></tr><tr><td>CheckSum</td><td>024A97D4</td></tr><tr><td>ImageSize</td><td>024FE000</td></tr><tr><td>File version</td><td>8.1.3.522</td></tr><tr><td>Product version</td><td>8.1.3.522</td></tr><tr><td>File flags</td><td>0 (Mask 17)</td></tr><tr><td>File OS</td><td>4 Unknown Win32</td></tr><tr><td>File type</td><td>2.0 Dll</td></tr><tr><td>File date</td><td>00000000.00000000</td></tr><tr><td>Translations</td><td>0409.04e4</td></tr><tr><td>CompanyName</td><td>PDFTron Systems Inc.</td></tr><tr><td>ProductName</td><td>PDFNet SDK for C/C++/JAVA</td></tr><tr><td>InternalName</td><td>PDFNetC</td></tr><tr><td>OriginalFilename</td><td>PDFNetC.dll</td></tr><tr><td>ProductVersion</td><td>8.1.0</td></tr><tr><td>FileVersion</td><td>8.1.0</td></tr><tr><td>FileDescription</td><td>PDFNet Dynamic Link Library for C/C++/JAVA</td></tr><tr><td>LegalCopyright</td><td>Copyright (C) 2001-2020, PDFTron Systems Inc.</td></tr><tr><td>Comments</td><td>PDFTron PDFNet SDK</td></tr></table></span>
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Block Collapsed">
+      <h1 class="BlockHeader">Application and cdb output log<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <span class="CDBOrApplicationStdOut">*** wait with pending attach</span><br/>
+<span class="CDBOrApplicationStdOut">************* Path validation summary **************</span><br/>
+<span class="CDBOrApplicationStdOut">Response                         Time (ms)     Location</span><br/>
+<span class="CDBOrApplicationStdOut">Deferred                                       cache*</span><br/>
+<span class="CDBOrApplicationStdOut">Deferred                                       srv*http://msdl.microsoft.com/download/symbols</span><br/>
+<span class="CDBOrApplicationStdOut">Symbol search path is: cache*;srv*http://msdl.microsoft.com/download/symbols</span><br/>
+<span class="CDBOrApplicationStdOut">Executable search path is: </span><br/>
+<span class="CDBOrApplicationStdOut">Page heap: pid 0x3908: page heap enabled with flags 0x2.</span><br/>
+<span class="CDBOrApplicationStdOut">Page heap: pid 0x3908: page heap enabled with flags 0x2.</span><br/>
+<span class="CDBOrApplicationStdOut">(3908.2894): Break instruction exception - code 80000003 (first chance)</span><br/>
+<span class="ApplicationStdOut">input file is :C:\winafl\winafl\build32\bin\Release\fuzzPDFTronMin\Release\out-20210304\slaver00\crashes\id_000048_00_EXCEPTION_ACCESS_VIOLATION</span><br/>
+<span class="ApplicationStdOut">out file is :C:/winafl/winafl/build32/bin/Release/0000.pdf</span><br/>
+<span class="ApplicationStdOut"></span><br/>
+<span class="ApplicationStdOut">PDFNet is running in demo mode.</span><br/>
+<span class="CDBOrApplicationStdOut">(3908.4454): Access violation - code c0000005 (first chance)</span><br/>
+<span class="CDBOrApplicationStdOut">First chance exceptions are reported before any exception handling.</span><br/>
+<span class="CDBOrApplicationStdOut">This exception may be expected and handled.</span><br/>
+
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Footer Block">
+      This report was generated using <a href="https://github.com/SkyLined/BugId">BugId version 2020-06-17 22:47</a>
+        by SkyLined</a>.<br/>
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="vertical-align: middle; float: left;" original-src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAAAfCAYAAABjyArgAAAHFUlEQVRoge2aTWsbSRrH+zysha5BAxGEXaxDgjzDzGWXpMH5AJpTQiCDLjvMbcQ4Y9asdtMblAzZDRihMGQWEg/MbeVEfrcly2rZrVa3+r0l2Vcd9AGEP8F/D+2uqW5gaWWn67+1VP/56mnmgEQYBgGH/uFdIZxP2wXtrBb3EG+tIfi4T5KQgmHYhmCLKCqiJA1CTW9BtVQoJkqNEtzuqlCNRUoeg2yJqGqiKjIAg7FMnihhOLhPvKlPHaLO9gubGFzbwPru2tY287h3dZbvN1cxdvNVaxuZJFd/9+V6TRkArfA53FwVES5wkOQjlBVRNR0GaqpwLB1WA0TdtNC/biOxonT68d12E0bVsOEYetQTRU1XUZVESFIRyiLPA6Oiijw3ZBz2+8I5NWN7FWFzHjhimVUZAGSKkE1HLB200LqaQrzd+cxE5jpWgozgRnM351H6lkKdtOCUTegmgpkTUKlVsGhWMbB0YEH8sbeOtZ2cg7kzbcDvXgpuYRIJNJ170gkgqXk0sQwLsI+AZwv7XngypoEzVJhNUykM2mEQqGhdScUCiH9Mg2rYUKzNNR0GSKBXCRysZXfxMauA/k8L868ymA2MkvssyyLRCKBRCIBlmXJ97ORWWReZUaGcJH2CeDi4T7KFZ6Cq8FuWoh9FfPACwaDiMfj4DgOPM+D53lwHId4PI5gMOj5beyrGCqSAN12IFdqFZRF/kyT97Czv+2Vih5evPLrGwQCAcdeLIZWqwV/a7VaiMWccQYCgZEgXLR9ArgklCBIR5BUx3P9cIPBIDiOQ6fT6RoA3VZWVjygZyOzqEgCNEuDrEkQpCPwQgn75QL2DnYdqejhxe4AXc+Kx+Oe+7j2/fd27zksgH7208vLeHDv/sT2CeBDsYyqIkI1FFgN0wM3Go32nNl+rdPpIBqNejzZaphQTQVVRaSkgvLinTXktt55ZGIpuUQ86+T4eCBgAMTThtFM1/5nc3P476ufPXCvXbuGmT/MYHHhEdrt9lj2PYAFWYCsyTBsHelM2gN3kNcOAzn9Mg2jbjhSIQvgK44X7xZ3sFVwtNiVCRewG3BGmdxWq0UC06CHd+3P/vFPuHE9jDt//gu+/es3YBgGHMfhx2c/gmEYrGazY9n3AK4qIlRTgd20SEALBoMwTXNkuDRkVy5CoRDspgXVVIkXFw8dL6YzClom3IDjb/F4nEycf2kDIIFpmIdnWRY/fL+Av/2wiBvXw6S7nutfOaPY9wCWNQm6rSP1NEUGz3Hc2HDd5uoWwzBIPUvBsHWixaWztI2WCT/gRCLRZdOftfhbIpEYGjBtX5YkLC488theXHjUBXlY+x7ANb0Gs2Fi/u488V5aGnieRywWA8uyYFnWA99/bXl52TMg14vn787DaphQ9Fq3TOQ3nWyC0uH3Ddht7XYbiwuPMHfzFvHoB/fuo5DPjw9YNRx5cDcR9NLjeb5nvsuyLHK5XM9r9P+7S3omMAO7aUM1FYhnKdt+eR97B7vYKmySdO19SwTdTk9P8eb1awDAyfGxRzZcnR5LIjRTRf3YJgOnvdANVuFwGK1WCzzPIxwOY2VlhVxzM41cLkeuuY2WifpxHZpHh/c96RoN+Lwg1897xwlytP0H9+7jxvUw5m7ewtzNW0QmVrNZ/PPvSVwPfTpekNMsFY2TOhk4z/NdD9NLk4fRa3oFNE7q0CwNVaU6EDCdpg0LeJw0jbbfbreR+tcTkqall5dxeno6lv3fPeDs+mgbDVcbp7HRePHv/3RtNMaxP7JEdDodmKaJcDgMjuM8EuG/5rZxJSK7foW2yucFufMC2TBBzp15J8hZUI3hghwNgS7GRKNRxONxJBIJz2Zm3GLPRdrvStPcLXIwGOxa5v3StFwuR773XwOAcDjsSdNqVJpW4Punab0084MtV7obDXqb7M9nx2n9NhpHZxuNfOm3jUa/gs+H3AlgsdZ7qzxKHcDfJt0qXzacqQKmiz1vfnnt0aOpFHsyaRi2jpouQ5AFUrKkC+/+Ys9lw5kqYIZhkHycJOXKh18/9EAepejTarV6lysNBU+ePukZFK94/+1D4vvvoJkqrDEK7p1OBxzHeQruX3z5BeymBc1SkXycvOwHvXzADMPgH4+T0CwNVtPyeLILepQjI7tpQbc0/PTzTxMNkm70d/7fTGK/32f/fScGTCCbzqHnm19ej37omXEPPdWJ4fZ6YP/fEwLoO3nnTehEgBnGkQv62D6dSQ88tk+/TDvH9rYO1VCmJgu9PHgKD94X6LQm7lzADMPgs8/nkNvIQTUV6LYOk7x4YlMvntiwm5bnxZO1zRxu37k9FbiDPGmagOnJHHTfqQB2++07t/H8xXMUy0Xq1amzbqpQDQXFchHPXzyfKlj/Q1+0Bw8CfmGAP/YJOoBPLn0QV7cz/wfb6tgzbhMVpgAAAABJRU5ErkJggg=="/></a>This copy of BugId is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> during a trial period.<br/>Please contact the author if you wish to continue to use BugId after the trial period.
+    </div>
+  </body>
+</html>
